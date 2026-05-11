@@ -1,0 +1,30 @@
+services:
+  compass:
+    build: .
+    container_name: compass
+    restart: unless-stopped
+    networks:
+      default:
+      proxy-network:
+        aliases:
+          - compass
+    labels:
+      traefik.enable: true
+
+      traefik.http.services.wordpress-test.loadbalancer.server.port: 80
+      traefik.http.services.wordpress-test.loadbalancer.server.scheme: "http"
+
+      traefik.http.routers.wordpress-test.entrypoints: "http"
+      traefik.http.routers.wordpress-test.rule: "Host(`your.domain.tld`)"
+      traefik.http.routers.wordpress-test.middlewares: "redirect-ssl, compression"
+
+      traefik.http.routers.wordpress-test-ssl.entrypoints: "https"
+      traefik.http.routers.wordpress-test-ssl.rule: "Host(`your.domain.tld`)"
+      traefik.http.routers.wordpress-test-ssl.tls: true
+      traefik.http.routers.wordpress-test-ssl.middlewares: "compression, secure-headers"
+
+networks:
+  default:
+    driver: bridge
+  proxy-network:
+    external: true

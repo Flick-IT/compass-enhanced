@@ -1,0 +1,161 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  font-family: -apple-system, system-ui, "SF Pro Display", sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Permission / error screens ─────────────────────────── */
+.permission-screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #000;
+}
+
+.permission-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.permission-icon {
+  font-size: 64px;
+}
+
+.permission-content h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.permission-content p {
+  font-size: 15px;
+  color: #8e8e93;
+  line-height: 1.5;
+}
+
+.permission-btn {
+  margin-top: 8px;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 14px;
+  background: #ff3b30;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.permission-btn:active {
+  opacity: 0.7;
+}
+
+/* ── Main compass screen ────────────────────────────────── */
+.compass-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 0 env(safe-area-inset-bottom, 24px);
+  background: #000;
+  user-select: none;
+}
+
+/* ── Heading readout ────────────────────────────────────── */
+.heading-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.heading-degrees {
+  font-size: 64px;
+  font-weight: 200;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -2px;
+  color: #fff;
+}
+
+.heading-cardinal {
+  font-size: 28px;
+  font-weight: 400;
+  color: #8e8e93;
+}
+
+/* ── Delta display ──────────────────────────────────────── */
+.delta-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 28px;
+}
+
+.delta-label {
+  font-size: 13px;
+  color: #ff9f0a;
+  font-weight: 500;
+}
+
+.delta-value {
+  font-size: 22px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  min-width: 64px;
+  text-align: center;
+}
+
+.delta-value.pos { color: #30d158; }
+.delta-value.neg { color: #ff453a; }
+.delta-value:not(.pos):not(.neg) { color: #fff; }
+
+/* ── Compass wrapper ────────────────────────────────────── */
+.compass-wrapper {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  cursor: pointer;
+  touch-action: none;
+  transition: box-shadow 0.2s;
+}
+
+.compass-wrapper.pressing {
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.5);
+}
+
+.compass-wrapper.locked {
+  box-shadow: 0 0 0 2px rgba(255, 159, 10, 0.5);
+}
+
+/* ── Hint text ──────────────────────────────────────────── */
+.hint {
+  font-size: 13px;
+  color: #48484a;
+  margin-top: 8px;
+}
